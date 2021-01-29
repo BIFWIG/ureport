@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: web
+server:
+  servlet:
+    context-path: /web
