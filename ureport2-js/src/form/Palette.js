@@ -13,6 +13,7 @@ import SelectComponent from './component/SelectComponent.js';
 import SubmitButtonComponent from './component/SubmitButtonComponent.js';
 import ResetButtonComponent from './component/ResetButtonComponent.js';
 import DatetimeComponent from './component/DatetimeComponent.js';
+import MultiSelectComponent from "./component/MultiSelectComponent";
 
 export default class Palette{
     constructor(){
@@ -60,6 +61,10 @@ export default class Palette{
         this.addComponent(new SelectComponent({
             icon:"form form-dropdown",
             label:"单选列表"
+        }));
+        this.addComponent(new MultiSelectComponent({
+            icon:"form form-dropdown",
+            label:"多选列表"
         }));
         this.addComponent(new SubmitButtonComponent({
             icon:"form form-submit",

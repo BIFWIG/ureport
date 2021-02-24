@@ -1,5 +1,6 @@
 HELP.md
 target/
+web-demo/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
@@ -32,6 +33,10 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### npm ###
+ureport2-js/package-lock.json
+ureport2-js/node_modules/
 
 
 ### Mac OS ###

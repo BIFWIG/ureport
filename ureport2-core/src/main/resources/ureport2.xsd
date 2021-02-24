@@ -14,21 +14,23 @@
 			</sequence>
 		</complexType>
 	</element>
-	
+
 	<complexType name="search-form">
 		<sequence>
 			<element name="input-text" type="tns:input-text" maxOccurs="unbounded" minOccurs="0"></element>
 			<element name="input-radio" type="tns:input-radio" maxOccurs="unbounded" minOccurs="0"></element>
 			<element name="input-checkbox" type="tns:input-checkbox" maxOccurs="unbounded" minOccurs="0"></element>
 			<element name="input-select" type="tns:input-select" maxOccurs="unbounded" minOccurs="0"></element>
+			<element name="input-multiSelect" type="tns:input-multiSelect" maxOccurs="unbounded" minOccurs="0"></element>
 			<element name="button-submit" type="tns:button-submit" maxOccurs="1" minOccurs="1"></element>
 			<element name="button-reset" type="tns:button-reset" maxOccurs="1" minOccurs="0"></element>
 			<element name="grid" type="tns:grid" maxOccurs="unbounded" minOccurs="0"></element>
-			<element name="col" type="tns:col" maxOccurs="unbounded" minOccurs="0"></element>		
+			<element name="col" type="tns:col" maxOccurs="unbounded" minOccurs="0"></element>
+
 		</sequence>
 		<attribute name="top-toolbar" type="boolean"></attribute>
 	</complexType>
-	
+
 	<complexType name="col">
 		<sequence>
 			<element name="input-text" type="tns:input-text" maxOccurs="unbounded" minOccurs="0"></element>
@@ -37,12 +39,12 @@
 			<element name="input-select" type="tns:input-select" maxOccurs="unbounded" minOccurs="0"></element>
 			<element name="button-submit" type="tns:button-submit" maxOccurs="1" minOccurs="1"></element>
 			<element name="button-reset" type="tns:button-reset" maxOccurs="1" minOccurs="0"></element>
-			<element name="grid" type="tns:grid" maxOccurs="unbounded" minOccurs="0"></element>		
-			<element name="col" type="tns:col" maxOccurs="unbounded" minOccurs="0"></element>		
+			<element name="grid" type="tns:grid" maxOccurs="unbounded" minOccurs="0"></element>
+			<element name="col" type="tns:col" maxOccurs="unbounded" minOccurs="0"></element>
 		</sequence>
 		<attribute name="size" type="int" use="required"></attribute>
 	</complexType>
-	
+
 	<complexType name="grid">
 		<sequence>
 			<element name="input-text" type="tns:input-text" maxOccurs="unbounded" minOccurs="0"></element>
@@ -51,14 +53,14 @@
 			<element name="input-select" type="tns:input-select" maxOccurs="unbounded" minOccurs="0"></element>
 			<element name="button-submit" type="tns:button-submit" maxOccurs="1" minOccurs="1"></element>
 			<element name="button-reset" type="tns:button-reset" maxOccurs="1" minOccurs="0"></element>
-			<element name="grid" type="tns:grid" maxOccurs="unbounded" minOccurs="0"></element>		
-			<element name="col" type="tns:col" maxOccurs="unbounded" minOccurs="0"></element>		
+			<element name="grid" type="tns:grid" maxOccurs="unbounded" minOccurs="0"></element>
+			<element name="col" type="tns:col" maxOccurs="unbounded" minOccurs="0"></element>
 		</sequence>
 		<attribute name="show-border" type="boolean"></attribute>
 		<attribute name="border-width" type="int"></attribute>
 		<attribute name="border-color" type="string"></attribute>
 	</complexType>
-	
+
 	<complexType name="button-submit">
 		<attribute name="label" type="string" use="required"></attribute>
 		<attribute name="style" type="string"></attribute>
@@ -67,7 +69,7 @@
 		<attribute name="label" type="string" use="required"></attribute>
 		<attribute name="style" type="string" use="required"></attribute>
 	</complexType>
-	
+
 	<complexType name="input" abstract="true">
 		<attribute name="label" type="string" use="required"></attribute>
 		<attribute name="label-position" use="required">
@@ -80,13 +82,13 @@
 		</attribute>
 		<attribute name="bind-parameter" type="string" use="required"></attribute>
 	</complexType>
-	
+
 	<complexType name="input-text">
 		<complexContent>
 			<extension base="tns:input"></extension>
 		</complexContent>
 	</complexType>
-	
+
 	<complexType name="input-datetime">
 		<complexContent>
 			<extension base="tns:input">
@@ -94,7 +96,7 @@
 			</extension>
 		</complexContent>
 	</complexType>
-	
+
 	<complexType name="input-radio">
 		<complexContent>
 			<extension base="tns:input">
@@ -105,7 +107,7 @@
 			</extension>
 		</complexContent>
 	</complexType>
-	
+
 	<complexType name="input-checkbox">
 		<complexContent>
 			<extension base="tns:input">
@@ -116,7 +118,7 @@
 			</extension>
 		</complexContent>
 	</complexType>
-	
+
 	<complexType name="input-select">
 		<complexContent>
 			<extension base="tns:input">
@@ -127,7 +129,18 @@
 			</extension>
 		</complexContent>
 	</complexType>
-	
+
+	<complexType name="input-multiSelect">
+		<complexContent>
+			<extension base="tns:input">
+				<sequence>
+					<element name="option" type="tns:input-option" maxOccurs="unbounded" minOccurs="1"></element>
+				</sequence>
+				<attribute name="useDataset" type="boolean"></attribute>
+			</extension>
+		</complexContent>
+	</complexType>
+
 	<complexType name="input-option">
 		<attribute name="label" type="string" use="required"></attribute>
 		<attribute name="value" type="string" use="required"></attribute>
@@ -147,7 +160,7 @@
 		<attribute name="italic" type="boolean"></attribute>
 		<attribute name="underline" type="boolean"></attribute>
 	</complexType>
-	
+
 	<complexType name="content" mixed="true"></complexType>
 
 	<complexType name="paper">
@@ -188,12 +201,12 @@
 				</restriction>
 			</simpleType>
 		</attribute>
-		
+
 		<attribute name="width" type="int"></attribute>
 		<attribute name="height" type="int"></attribute>
 		<attribute name="width-mm" type="int"></attribute>
 		<attribute name="height-mm" type="int"></attribute>
-		
+
 		<attribute name="left-margin" type="int"></attribute>
 		<attribute name="left-margin-mm" type="int"></attribute>
 		<attribute name="right-margin" type="int"></attribute>
@@ -202,7 +215,7 @@
 		<attribute name="top-margin-mm" type="int"></attribute>
 		<attribute name="bottom-margin" type="int"></attribute>
 		<attribute name="bottom-margin-mm" type="int"></attribute>
-		
+
 		<attribute name="paging-mode">
 			<simpleType>
 				<restriction base="string">
@@ -212,12 +225,12 @@
 			</simpleType>
 		</attribute>
 		<attribute name="fixrows" type="int"></attribute>
-		
+
 		<attribute name="column-enabled" type="boolean"></attribute>
 		<attribute name="column-count" type="int"></attribute>
 		<attribute name="column-margin" type="int"></attribute>
-	</complexType>	
-	
+	</complexType>
+
 	<complexType name="row">
 		<attribute name="row-number" type="int" use="required"></attribute>
 		<attribute name="height" type="int" use="required"></attribute>
@@ -263,10 +276,10 @@
 				</restriction>
 			</simpleType>
 		</attribute>
-		
+
 		<attribute name="fill-blank-rows" type="boolean" use="optional"></attribute>
 		<attribute name="multiple" type="int" use="optional"></attribute>
-		
+
 		<attribute name="link-url" type="string" use="optional"></attribute>
 		<attribute name="link-target-window" use="optional">
 			<simpleType>
@@ -277,7 +290,7 @@
 			</simpleType>
 		</attribute>
 	</complexType>
-	
+
 	<complexType name="condition-property-item">
 		<sequence>
 			<element name="condition" type="tns:condition" maxOccurs="unbounded" minOccurs="0"></element>
@@ -308,7 +321,7 @@
 			</simpleType>
 		</attribute>
 	</complexType>
-	
+
 	<complexType name="condition-paging">
 		<attribute name="line" type="int"></attribute>
 		<attribute name="position">
@@ -320,13 +333,13 @@
 			</simpleType>
 		</attribute>
 	</complexType>
-	
+
 	<complexType name="cell-style">
 		<sequence>
 			<element name="left-border" type="tns:border" minOccurs="0" maxOccurs="1"></element>
 			<element name="right-border" type="tns:border" minOccurs="0" maxOccurs="1"></element>
 			<element name="top-border" type="tns:border" minOccurs="0" maxOccurs="1"></element>
-			<element name="bottom-border" type="tns:border" minOccurs="0" maxOccurs="1"></element>		
+			<element name="bottom-border" type="tns:border" minOccurs="0" maxOccurs="1"></element>
 		</sequence>
 		<attribute name="font-family" type="string"></attribute>
 		<attribute name="font-size" type="int"></attribute>
@@ -356,7 +369,7 @@
 			</simpleType>
 		</attribute>
 	</complexType>
-	
+
 	<complexType name="border">
 		<attribute name="width" type="int"></attribute>
 		<attribute name="color" type="string"></attribute>
@@ -369,10 +382,10 @@
 				</restriction>
 			</simpleType>
 		</attribute>
-	</complexType>	
-	
+	</complexType>
+
 	<complexType name="simple-value" mixed="true"></complexType>
-	
+
 	<complexType name="image-value">
 		<sequence>
 			<element name="text" type="tns:text" minOccurs="0" maxOccurs="1"></element>
@@ -386,7 +399,7 @@
 			</simpleType>
 		</attribute>
 	</complexType>
-	
+
 	<complexType name="chart-value">
 		<sequence>
 			<element name="xaxes" type="tns:xaxes" minOccurs="0" maxOccurs="1"></element>
@@ -399,7 +412,7 @@
 			<element name="layout-option" type="tns:layout-option" minOccurs="0" maxOccurs="1"></element>
 		</sequence>
 	</complexType>
-	
+
 	<complexType name="title-option">
 		<attribute name="display" type="boolean"></attribute>
 		<attribute name="font-size" type="int"></attribute>
@@ -426,7 +439,7 @@
 			</simpleType>
 		</attribute>
 	</complexType>
-	
+
 	<complexType name="tooltip-option">
 		<attribute name="enabled" type="boolean"></attribute>
 		<attribute name="title-font-size" type="int"></attribute>
@@ -452,7 +465,7 @@
 			</simpleType>
 		</attribute>
 	</complexType>
-	
+
 	<complexType name="legend-option">
 		<sequence>
 			<element name="labels" type="tns:labels" minOccurs="1" maxOccurs="1"></element>
@@ -469,7 +482,7 @@
 			</simpleType>
 		</attribute>
 	</complexType>
-	
+
 	<complexType name="labels">
 		<attribute name="box-width" type="int"></attribute>
 		<attribute name="font-size" type="int"></attribute>
@@ -485,52 +498,52 @@
 			</simpleType>
 		</attribute>
 	</complexType>
-	
+
 	<complexType name="layout-option">
 		<attribute name="padding" type="int"></attribute>
 	</complexType>
-	
+
 	<complexType name="animations-option">
 		<attribute name="duration" type="int"></attribute>
 		<attribute name="easing">
 			<simpleType>
 				<restriction base="string">
-					<enumeration value="linear"></enumeration>				
-					<enumeration value="easeInQuad"></enumeration>				
-					<enumeration value="easeOutQuad"></enumeration>				
-					<enumeration value="easeInOutQuad"></enumeration>				
-					<enumeration value="easeInCubic"></enumeration>				
-					<enumeration value="easeOutCubic"></enumeration>				
-					<enumeration value="easeInOutCubic"></enumeration>				
-					<enumeration value="easeInQuart"></enumeration>				
-					<enumeration value="easeOutQuart"></enumeration>				
-					<enumeration value="easeInOutQuart"></enumeration>				
-					<enumeration value="easeInQuint"></enumeration>				
-					<enumeration value="easeOutQuint"></enumeration>				
-					<enumeration value="easeInOutQuint"></enumeration>				
-					<enumeration value="easeInSine"></enumeration>				
-					<enumeration value="easeOutSine"></enumeration>				
-					<enumeration value="easeInOutSine"></enumeration>				
-					<enumeration value="easeInExpo"></enumeration>				
-					<enumeration value="easeOutExpo"></enumeration>				
-					<enumeration value="easeInOutExpo"></enumeration>				
-					<enumeration value="easeInCirc"></enumeration>				
-					<enumeration value="easeOutCirc"></enumeration>				
-					<enumeration value="easeInOutCirc"></enumeration>				
-					<enumeration value="easeInElastic"></enumeration>				
-					<enumeration value="easeOutElastic"></enumeration>				
-					<enumeration value="easeInOutElastic"></enumeration>				
-					<enumeration value="easeInBack"></enumeration>				
-					<enumeration value="easeOutBack"></enumeration>				
-					<enumeration value="easeInOutBack"></enumeration>				
-					<enumeration value="easeInBounce"></enumeration>				
-					<enumeration value="easeOutBounce"></enumeration>				
-					<enumeration value="easeInOutBounce"></enumeration>	
+					<enumeration value="linear"></enumeration>
+					<enumeration value="easeInQuad"></enumeration>
+					<enumeration value="easeOutQuad"></enumeration>
+					<enumeration value="easeInOutQuad"></enumeration>
+					<enumeration value="easeInCubic"></enumeration>
+					<enumeration value="easeOutCubic"></enumeration>
+					<enumeration value="easeInOutCubic"></enumeration>
+					<enumeration value="easeInQuart"></enumeration>
+					<enumeration value="easeOutQuart"></enumeration>
+					<enumeration value="easeInOutQuart"></enumeration>
+					<enumeration value="easeInQuint"></enumeration>
+					<enumeration value="easeOutQuint"></enumeration>
+					<enumeration value="easeInOutQuint"></enumeration>
+					<enumeration value="easeInSine"></enumeration>
+					<enumeration value="easeOutSine"></enumeration>
+					<enumeration value="easeInOutSine"></enumeration>
+					<enumeration value="easeInExpo"></enumeration>
+					<enumeration value="easeOutExpo"></enumeration>
+					<enumeration value="easeInOutExpo"></enumeration>
+					<enumeration value="easeInCirc"></enumeration>
+					<enumeration value="easeOutCirc"></enumeration>
+					<enumeration value="easeInOutCirc"></enumeration>
+					<enumeration value="easeInElastic"></enumeration>
+					<enumeration value="easeOutElastic"></enumeration>
+					<enumeration value="easeInOutElastic"></enumeration>
+					<enumeration value="easeInBack"></enumeration>
+					<enumeration value="easeOutBack"></enumeration>
+					<enumeration value="easeInOutBack"></enumeration>
+					<enumeration value="easeInBounce"></enumeration>
+					<enumeration value="easeOutBounce"></enumeration>
+					<enumeration value="easeInOutBounce"></enumeration>
 				</restriction>
 			</simpleType>
 		</attribute>
 	</complexType>
-	
+
 	<complexType name="chart-dataset">
 		<choice>
 				<element name="area-dataset" type="tns:area-dataset"></element>
@@ -546,14 +559,14 @@
 				<element name="mix-dataset" type="tns:mix-dataset"></element>
 			</choice>
 	</complexType>
-	
+
 	<complexType name="mix-dataset">
 		<sequence>
 			<element name="bar-dataset" type="tns:bar-dataset" minOccurs="0" maxOccurs="unbounded"></element>
 			<element name="line-dataset" type="tns:line-dataset" minOccurs="0" maxOccurs="unbounded"></element>
 		</sequence>
 	</complexType>
-	
+
 	<complexType name="category-dataset">
 		<attribute name="dataset-name" type="string"></attribute>
 		<attribute name="category-property" type="string"></attribute>
@@ -573,7 +586,7 @@
 			</simpleType>
 		</attribute>
 	</complexType>
-	
+
 	<complexType name="bubble-dataset">
 		<attribute name="dataset-name" type="string"></attribute>
 		<attribute name="x-property" type="string"></attribute>
@@ -582,7 +595,7 @@
 		<attribute name="line-tension" type="double"></attribute>
 		<attribute name="fill" type="boolean"></attribute>
 	</complexType>
-	
+
 	<complexType name="scatter-dataset">
 		<attribute name="dataset-name" type="string"></attribute>
 		<attribute name="x-property" type="string"></attribute>
@@ -590,73 +603,73 @@
 		<attribute name="r-property" type="string"></attribute>
 		<attribute name="category-property" type="string"></attribute>
 	</complexType>
-	
+
 	<complexType name="line-dataset">
 		<complexContent>
 			<extension base="tns:category-dataset">
 				<attribute name="line-tension" type="double"></attribute>
-			</extension>		
+			</extension>
 		</complexContent>
 	</complexType>
-	
+
 	<complexType name="bar-dataset">
 		<complexContent>
 			<extension base="tns:category-dataset">
-			</extension>		
+			</extension>
 		</complexContent>
 	</complexType>
-	
+
 	<complexType name="horizontal-bar-dataset">
 		<complexContent>
 			<extension base="tns:category-dataset">
-			</extension>		
+			</extension>
 		</complexContent>
 	</complexType>
-	
+
 	<complexType name="area-dataset">
 		<complexContent>
 			<extension base="tns:category-dataset">
-			</extension>		
+			</extension>
 		</complexContent>
 	</complexType>
-	
+
 	<complexType name="doughnut-dataset">
 		<complexContent>
 			<extension base="tns:category-dataset">
-			</extension>		
+			</extension>
 		</complexContent>
 	</complexType>
-	
+
 	<complexType name="pie-dataset">
 		<complexContent>
 			<extension base="tns:category-dataset">
-			</extension>		
+			</extension>
 		</complexContent>
 	</complexType>
-	
+
 	<complexType name="polar-dataset">
 		<complexContent>
 			<extension base="tns:category-dataset">
-			</extension>		
+			</extension>
 		</complexContent>
 	</complexType>
-	
+
 	<complexType name="radar-dataset">
 		<complexContent>
 			<extension base="tns:category-dataset">
 				<attribute name="line-tension" type="double"></attribute>
 				<attribute name="fill" type="boolean"></attribute>
-			</extension>		
+			</extension>
 		</complexContent>
 	</complexType>
-	
+
 	<complexType name="axes" abstract="true">
 		<sequence>
 			<element name="scale-label" type="tns:scale-label" minOccurs="0" maxOccurs="1"></element>
 		</sequence>
 		<attribute name="rotation" type="int"></attribute>
 	</complexType>
-	
+
 	<complexType name="scale-label">
 		<attribute name="display" type="boolean"></attribute>
 		<attribute name="label-string" type="string"></attribute>
@@ -672,7 +685,7 @@
 			</simpleType>
 		</attribute>
 	</complexType>
-	
+
 	<complexType name="xaxes">
 		<complexContent>
 			<extension base="tns:axes">
@@ -687,7 +700,7 @@
 			</extension>
 		</complexContent>
 	</complexType>
-	
+
 	<complexType name="yaxes">
 		<complexContent>
 			<extension base="tns:axes">
@@ -702,7 +715,7 @@
 			</extension>
 		</complexContent>
 	</complexType>
-	
+
 	<complexType name="zxing-value">
 		<sequence>
 			<element name="text" type="tns:text" minOccurs="0" maxOccurs="1"></element>
@@ -726,7 +739,7 @@
 		<attribute name="format" use="optional"></attribute>
 		<attribute name="code-display" use="optional"></attribute>
 	</complexType>
-	
+
 	<complexType name="slash-value">
 		<sequence>
 			<element name="slash" type="tns:slash" maxOccurs="unbounded" minOccurs="1"/>
@@ -739,11 +752,11 @@
 		<attribute name="y" type="int" use="required"></attribute>
 		<attribute name="degree" type="int" use="required"></attribute>
 	</complexType>
-	
+
 	<complexType name="text" mixed="true"></complexType>
-	
+
 	<complexType name="expression-value" mixed="true"></complexType>
-	
+
 	<complexType name="dataset-value">
 		<sequence>
 			<element name="condition" type="tns:condition" maxOccurs="unbounded" minOccurs="0"></element>
@@ -761,23 +774,23 @@
 			</simpleType>
 		</attribute>
 	</complexType>
-	
+
 	<complexType name="link-parameter">
 		<sequence>
 			<element name="value" type="tns:link-parameter-value" maxOccurs="1" minOccurs="1"></element>
 		</sequence>
 		<attribute name="name" type="string" use="required"></attribute>
 	</complexType>
-	
+
 	<complexType name="link-parameter-value" mixed="true"></complexType>
-	
+
 	<complexType name="group-item">
 		<sequence>
 			<element name="condition" type="tns:condition" minOccurs="1" maxOccurs="unbounded"></element>
 		</sequence>
 		<attribute name="name" type="string" use="required"></attribute>
 	</complexType>
-	
+
 	<complexType name="condition">
 		<sequence>
 			<element name="value" type="tns:condition-value" minOccurs="1" maxOccurs="1"></element>
@@ -799,20 +812,20 @@
 		</attribute>
 	</complexType>
 	<complexType name="condition-value" mixed="true"></complexType>
-	
+
 	<complexType name="datasource">
 		<sequence>
 			<element name="dataset" type="tns:dataset" minOccurs="1" maxOccurs="unbounded"></element>
 		</sequence>
 		<attribute name="name" type="string" use="required"></attribute>
-		
+
 		<attribute name="driver" type="string" use="optional"></attribute>
 		<attribute name="url" type="string" use="optional"></attribute>
 		<attribute name="username" type="string" use="optional"></attribute>
 		<attribute name="password" type="string" use="optional"></attribute>
-		
+
 		<attribute name="bean" type="string" use="optional"></attribute>
-		
+
 		<attribute name="type" use="required">
 			<simpleType>
 				<restriction base="string">
@@ -823,8 +836,8 @@
 			</simpleType>
 		</attribute>
 	</complexType>
-	
-	
+
+
 	<complexType name="dataset">
 		<sequence>
 			<element name="sql" type="tns:sql" minOccurs="0" maxOccurs="1"></element>
@@ -842,9 +855,9 @@
 			</simpleType>
 		</attribute>
 	</complexType>
-	
+
 	<complexType name="sql" mixed="true"></complexType>
-	
+
 	<complexType name="parameter">
 		<attribute name="name" type="string" use="required"></attribute>
 		<attribute name="type" use="required">

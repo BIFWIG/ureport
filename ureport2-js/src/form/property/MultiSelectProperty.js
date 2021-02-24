@@ -2,7 +2,7 @@
  * Created by Jacky.Gao on 2017-10-20.
  */
 import Property from './Property.js';
-export default class SelectProperty extends Property{
+export default class MultiSelectProperty extends Property{
     constructor(report){
         super();
         this.col.append(this.buildBindParameter());

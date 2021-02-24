@@ -1,6 +1,11 @@
+
 spring:
   application:
     name: web
 server:
   servlet:
     context-path: /web
+  port: 8081
+ureport:
+  file:
+    dir: /Users/bif/Project/ureporter_product/ureport/web-demo/ureportfiles
