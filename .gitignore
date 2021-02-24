@@ -1,6 +1,5 @@
 HELP.md
 target/
-web-demo/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
@@ -41,3 +40,4 @@ ureport2-js/node_modules/
 
 ### Mac OS ###
 .DS_Store
+/web-demo/
